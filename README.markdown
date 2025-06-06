@@ -20,59 +20,74 @@ _A C++ console application offering a diverse range of calculators: number compa
 
 ## 📄 Overview
 
-**PolyCalc Suite Pro**, developed by Adrian Lesniak, is a multifaceted C++ console application designed as a versatile toolkit for various common calculations. It features a user-friendly, menu-driven interface that provides access to: a number comparison tool (with parity check); a piecewise function evaluator; geometric calculators for sphere volume, cone volume, and rectangle area; a triangle area calculator (using two sides and an included angle); and a basic shipping cost estimator. The program emphasizes a clean user experience with **cross-platform screen clearing**, robust input validation, and diligent error/message logging to `program_log.txt`. While a function to save results to `calculations.txt` is defined, its current use in the main workflow is noted as pending.
+**PolyCalc Suite Pro** is a C++ console application by Adrian Lesniak, designed as a versatile toolkit for various calculations. It features a menu-driven interface for: number comparison (with parity check), a piecewise function evaluator, geometric calculators (sphere volume, cone volume, rectangle area), triangle area (using two sides and an angle), and a shipping cost estimator. The program supports cross-platform screen clearing, robust input validation, and logs errors/messages to `program_log.txt`. Calculation results are saved to `calculations.txt`.
+
+![Demo GIF](screenshots/1.gif)
 
 ## ✨ Key Features & Calculation Tools
 
-The application offers a suite of distinct calculation modules:
+The application offers these calculation modules:
 
 1.  ⚖️ **Number Comparison Tool**:
-    *   Compares two integers (X and Y) entered by the user.
+    *   Compares two integers (X and Y).
     *   Determines if X is greater than, less than, or equal to Y.
-    *   Checks and reports if X is an odd or even number.
+    *   Checks and reports if X is odd or even.
 2.  📉 **Function Calculator**:
-    *   Evaluates a predefined piecewise mathematical function based on a user-inputted value for `x`.
-    *   (The specific function definition should be clear in the code, e.g., different formulas for different ranges of `x`).
+    *   Evaluates a piecewise mathematical function based on user input `x`:
+        - If `x <= -10` or `x >= 0`: `y = -2 * x`
+        - If `x < 0`: `y = (2/3)x² + 0.5x`
+        - If `x <= π`: `y = 1/(sin(x) + 2)`
+        - Otherwise: error message
 3.  📐 **Geometric Calculations**:
-    *   Offers a sub-menu to choose between calculating:
+    *   Sub-menu for:
         *   **Sphere Volume**: V = (4/3)πr³
         *   **Cone Volume**: V = (1/3)πr²h
-        *   **Rectangle Area**: A = width × height
-    *   Prompts for necessary dimensions (radius, height, width).
-4.  <0xF0><0x9F><0xAA><0xB ट्रायंगल_Area** (Triangle Area Calculator):
-    *   Calculates the area of a triangle given the lengths of two sides and the measure of the included angle (in degrees).
-    *   Uses the formula: Area = 0.5 × side1 × side2 × sin(angle).
+        *   **Rectangle Area**: A = a × b
+4.  🔺 **Triangle Area Calculator**:
+    *   Calculates area given two sides and the included angle (degrees).
+    *   Formula: Area = 0.5 × a × b × sin(angle)
 5.  🚚 **Shipping Cost Calculator**:
-    *   Determines the shipping cost based on user inputs for package weight and shipping distance.
-    *   (The specific cost calculation formula/logic needs to be defined in the code).
+    *   Calculates shipping cost based on weight and distance:
+        - ≤2kg: 1.1 per 100km
+        - ≤6kg: 2.2 per 100km
+        - <10kg: 3.7 per 100km
+        - ≤20kg: 4.8 per 100km
+        - >20kg: not accepted
 
 ### Common Features:
 *   🖥️ **Interactive Console Interface**:
-    *   `displayMenu`: Presents an ASCII-styled main menu with options 1–5 for tools and 0 to exit.
-    *   `displayHeader`: Shows task-specific titles to orient the user within each calculator module.
-    *   **User Prompts**: Clear prompts for all required inputs, with validation managed by `getValidNumericInput`.
+    *   `displayMenu`: ASCII-styled menu with options 1–5 and 0 to exit.
+    *   `displayHeader`: Task-specific titles.
+    *   **User Prompts**: All inputs validated by `getValidNumericInput`.
 *   ✍️ **Logging & File I/O**:
-    *   `logMessage`: A dedicated function to log errors and informational messages with timestamps to `program_log.txt`.
-    *   `saveToFile`: A function is defined to save calculation results to `calculations.txt`, though its current integration for all tools might be limited or a placeholder for future use.
+    *   `logMessage`: Logs errors/messages with timestamps to `program_log.txt`.
+    *   `saveToFile`: Saves calculation results to `calculations.txt`.
 *   🛠️ **Utility Functions**:
-    *   `clearScreen`: Clears the console window using platform-specific commands (`cls` for Windows, `clear` for Linux/macOS).
-    *   `handleInvalidInput`: Manages invalid user input by clearing stream error flags, ignoring residual input, and logging the error.
+    *   `clearScreen`: Clears console (`cls` for Windows, `clear` for others).
+    *   `handleInvalidInput`: Handles invalid input, clears stream, logs error.
 *   ⚙️ **Robust Operation**:
-    *   The main program loop continues until the user selects the exit option (0).
-    *   Handles invalid menu choices and incorrect data inputs with retries and error messages.
+    *   Main loop continues until user selects exit (0).
+    *   Handles invalid choices and inputs with retries and error messages.
 
 ## 🖼️ Screenshots
 
-**Coming soon!**
+_Screenshots of the main menu, calculation tools, and log/output files._
 
-_This section will be updated with screenshots showcasing the main menu, input/output for each of the five calculation tools, and examples from `program_log.txt` (and `calculations.txt` if fully utilized)._
+<p align="center">
+  <img src="screenshots\1.jpg" width="300"/>
+  <img src="screenshots\2.jpg" width="300"/>
+  <img src="screenshots\3.jpg" width="300"/>
+  <img src="screenshots\4.jpg" width="300"/>
+  <img src="screenshots\5.jpg" width="300"/>
+  <img src="screenshots\6.jpg" width="300"/>
+</p>
 
 ## ⚙️ System Requirements
 
-*   **Operating System**: Any OS supporting a C++11 (or later) compiler (e.g., Windows, Linux, macOS). Windows is required for `_getch` if used for "press any key" prompts beyond standard input.
-*   **C++ Compiler**: A C++ compiler supporting C++11 or later (e.g., g++, clang++, MSVC).
-*   **Standard C++ Libraries**: `<iostream>`, `<iomanip>`, `<cmath>`, `<stdlib.h>` (or `<cstdlib>`), `<conio.h>` (Windows-specific, for `_getch`), `<fstream>`, `<string>`, `<vector>`, `<limits>`, `<ctime>`.
-*   **Write Permissions**: The application needs write permissions in its execution directory to create/modify `program_log.txt` and `calculations.txt`.
+*   **Operating System**: Any OS with a C++11+ compiler (Windows, Linux, macOS). Windows required for `_getch` keypress.
+*   **C++ Compiler**: C++11 or later (g++, clang++, MSVC).
+*   **Standard Libraries**: `<iostream>`, `<cmath>`, `<cstdlib>`, `<conio.h>`, `<fstream>`, `<string>`, `<limits>`, `<ctime>`.
+*   **Write Permissions**: For `program_log.txt` and `calculations.txt`.
 
 ## 🛠️ Installation and Setup
 
@@ -81,86 +96,77 @@ _This section will be updated with screenshots showcasing the main menu, input/o
     git clone <repository-url>
     cd <repository-directory>
     ```
-    (Replace `<repository-url>` and `<repository-directory>` with your specific details)
-
 2.  **Save Main Code**:
-    Ensure your main program logic (including all calculation functions, UI functions, logging, and `main()`) is saved as `multi_calculator.cpp` (or your chosen main file name) in the project directory. *(The description implies a single-file structure for the core logic, with utility functions potentially also within this file if no separate utility header is mandated by the actual code for this project).*
+    Ensure your main program is saved as `main.cpp` in the project directory.
 
 3.  **Compile the Program**:
-    Open a terminal (Command Prompt, PowerShell, Bash, etc.) in the project directory.
-    **Example using g++ (works on Windows with MinGW, Linux, macOS):**
     ```bash
-    g++ multi_calculator.cpp -o multi_calculator -std=c++11
+    g++ main.cpp -o polycalc -std=c++11
     ```
-    *(Add `-static-libgcc -static-libstdc++` on Windows with MinGW if desired for standalone executables. Add optimization flags like `-O2` for release builds if needed).*
+    *(On Windows, use MinGW or similar; on Linux/macOS, ensure g++ is installed.)*
 
 4.  **Run the Program**:
-    *   On Windows: `.\multi_calculator.exe` or `multi_calculator.exe`
-    *   On Linux/macOS: `./multi_calculator` (ensure execute permissions: `chmod +x multi_calculator`)
+    *   On Windows: `polycalc.exe`
+    *   On Linux/macOS: `./polycalc`
 
 ## 💡 Usage Guide
 
-1.  Compile and run `multi_calculator` as detailed above.
+1.  Compile and run as above.
 2.  **Interface**:
-    *   The program will display a main menu with the following options:
+    *   Menu options:
         1.  Number Comparison
         2.  Function Calculation
-        3.  Geometric Calculations (Sphere, Cone, Rectangle)
+        3.  Geometric Calculations
         4.  Triangle Area
         5.  Shipping Calculator
         0.  Exit
 3.  **Input**:
-    *   Select a menu option (0–5) by typing the number and pressing Enter.
-    *   For each selected tool, you will be prompted to enter the necessary numeric inputs (e.g., two numbers for comparison; `x` for function; radius, height, width for geometric shapes; two sides and an angle for triangle; weight and distance for shipping).
-    *   Invalid inputs (e.g., non-numeric characters, negative dimensions where positive are expected) will trigger an error message (logged to `program_log.txt`) and prompt for re-entry.
+    *   Select an option (0–5).
+    *   Enter required numeric inputs for each tool.
+    *   Invalid inputs trigger error messages and retries.
 4.  **Output**:
-    *   **Number Comparison**: Displays the comparison result and parity of X (e.g., "X (10) is greater than Y (5) and the number X is even").
-    *   **Function Calculation**: Shows the calculated value of `y` for the given `x`.
-    *   **Geometric Calculations**: Outputs the calculated volume or area (e.g., "The volume of your sphere is: 4188.79 cubic units").
-    *   **Triangle Area**: Displays the computed area of the triangle.
-    *   **Shipping Calculator**: Shows the estimated shipping cost.
-    *   Errors encountered during operations are logged to `program_log.txt`.
-    *   *(Note: While `saveToFile` for `calculations.txt` is defined, its active use for all results is marked as not currently implemented in the description).*
+    *   Results are displayed for each calculation.
+    *   Errors are logged to [program_log.txt](http://_vscodecontentref_/0).
+    *   Calculation results are saved to `calculations.txt`.
 5.  **Actions**:
-    *   After each calculation and display of results, you will typically be prompted to press any key (or Enter) to continue and return to the main menu.
-    *   Select option `0` from the main menu to exit the application.
+    *   After each calculation, press any key to continue.
+    *   Select 0 to exit.
 
 ## 🗂️ File Structure & Data Persistence
 
-*   `multi_calculator.cpp`: The main C++ source file containing all program logic, including the implementations for each calculation tool, UI management, input validation, and error logging.
-*   `program_log.txt`: A plain text file where error messages and potentially other informational logs are recorded with timestamps. This file is created or appended to.
-*   `calculations.txt`: A plain text file intended for storing results of calculations. Its current usage by all tools might be limited or pending full implementation, as per the description. This file is created or appended to.
-*   `README.md`: This documentation file.
+*   [main.cpp](http://_vscodecontentref_/1): Main C++ source file with all logic.
+*   [program_log.txt](http://_vscodecontentref_/2): Logs errors/messages with timestamps.
+*   `calculations.txt`: Stores calculation results.
+*   [README.markdown](http://_vscodecontentref_/3): This documentation file.
 
 ## 📝 Technical Notes
 
-*   **Cross-Platform Considerations**: The program aims for cross-platform compatibility for screen clearing (`#ifdef _WIN32` for `system("cls")` vs. `system("clear")`). Keypress handling via `_getch()` is Windows-specific; standard `std::cin.get()` or more complex terminal I/O would be needed for similar behavior on other OSes for "press any key" prompts if strict non-buffered input is desired beyond simple Enter presses. Color support also uses conditional compilation for Windows API vs. ANSI codes.
-*   **`saveToFile` Functionality**: The `saveToFile` function is defined but noted as "not used in current code" for saving all results. This is a clear area for enhancement to make `calculations.txt` more comprehensive.
-*   **Input Validation**: The `getValidNumericInput` function, along with `handleInvalidInput`, is crucial for robustly handling user input, ensuring only valid numeric data is processed by the calculation functions and logging errors otherwise.
-*   **Timestamping**: The `logMessage` function includes timestamps for better traceability of errors and events.
-*   **Modularity**: Although likely in a single `.cpp` file, the distinct functions for each calculator tool, UI elements, and utilities like logging and input validation indicate a good degree of logical modularity.
+*   **Cross-Platform**: Uses [system("cls")](http://_vscodecontentref_/4) or [system("clear")](http://_vscodecontentref_/5) for screen clearing. [_getch()](http://_vscodecontentref_/6) is Windows-specific for keypress.
+*   **Input Validation**: [getValidNumericInput](http://_vscodecontentref_/7) ensures only valid numeric input is accepted.
+*   **Logging**: [logMessage](http://_vscodecontentref_/8) includes timestamps for traceability.
+*   **Result Saving**: All calculation results are saved to `calculations.txt`.
 
 ## 🤝 Contributing
 
-Contributions to **PolyCalc Suite Pro** are highly encouraged! If you have ideas for adding new calculation tools (e.g., more advanced physics, financial calculators), implementing the `saveToFile` functionality more broadly, enhancing cross-platform UI/UX, or developing a GUI:
+Contributions are welcome! To contribute:
 
 1.  Fork the repository.
-2.  Create a new branch for your feature (`git checkout -b feature/YourCalculatorIdea`).
-3.  Make your changes and commit them (`git commit -m 'Feature: Implement YourCalculatorIdea'`).
-4.  Push to the branch (`git push origin feature/YourCalculatorIdea`).
-5.  Open a Pull Request.
+2.  Create a new branch (`git checkout -b feature-branch`).
+3.  Make changes and commit (`git commit -m "Add feature"`).
+4.  Push to the branch (`git push origin feature-branch`).
+5.  Open a pull request.
 
-Please ensure your code is well-commented and adheres to good C++ practices.
+Please ensure your code is well-commented and follows good C++ practices.
 
 ## 📃 License
 
-This project is licensed under the **MIT License**.
-(If you have a `LICENSE` file in your repository, refer to it: `See the LICENSE file for details.`)
+This project is licensed under the **MIT License**.  
+See the [LICENSE](http://_vscodecontentref_/9) file for details.
 
 ## 📧 Contact
 
-Created by **Adrian Lesniak**.
-For questions, feedback, or issues, please open an issue on the GitHub repository or contact the repository owner.
+Created by **Adrian Lesniak**.  
+For questions or feedback, open an issue on GitHub or contact the repository owner.
 
 ---
 ✨ _Your versatile console companion for a multitude of calculations!_
