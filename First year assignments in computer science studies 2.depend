@@ -5,3 +5,13 @@
 	<stdlib.h>
 	<conio.h>
 
+1742009134 source:f:\my portafolio it ulepszona\c++\programs\first year assignments in computer science studies 2\main.cpp
+	<iostream>
+	<cmath>
+	<stdlib.h>
+	<conio.h>
+	<fstream>
+	<string>
+	<limits>
+	<ctime>
+
